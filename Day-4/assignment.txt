@@ -1,0 +1,71 @@
+ use assignment
+ db
+ db.createCollection("users")
+
+ db.users.insert({"first_name":"sneha","last_name":"naik","email":"sn@gmail.com","gender":"female","ip_address":123,"age":22}) 
+ db.users.insert({"first_name":"snehaal","last_name":"naik","email":"snn@gmail.com","gender":"female","ip_address":1234,"age":23})
+ db.users.insert({"first_name":"sunil","last_name":"naik","email":"suniln@gmail.com","gender":"male","ip_address":1,"age":25})
+ db.users.insert({"first_name":"suniln","last_name":"naik","email":"sun@gmail.com","gender":"male","ip_address":2,"age":24})
+ db.users.insert({"first_name":"jaya","last_name":"bhat","email":"jaya@gmail.com","gender":"female","ip_address":3,"age":44})
+ db.users.insert({"first_name":"ajay","last_name":"shet","email":"ajay@gmail.com","gender":"male","ip_address":3,"age":26})
+ db.users.insert({"first_name":"yogi","last_name":"naik","email":"yog@gmail.com","gender":"female","ip_address":4,"age":21})
+ db.users.insert({"first_name":"aisha","last_name":"maurya","email":"ashu@gmail.com","gender":"female","ip_address":5,"age":21})
+ db.users.insert({"first_name":"krish","last_name":"acharya","email":"krish@gmail.com","gender":"male","ip_address":6,"age":23})
+ db.users.insert({"first_name":"mine","last_name":"naik","email":"you@gmail.com","gender":"female","ip_address":7,"age":22})
+
+//insert many:
+
+db.users.insertMany([{"first_name":"sneha","last_name":"naik","email":"sn@gmail.com","gender":"female","ip_address":123,"age":22},
+{"first_name":"snehaal","last_name":"naik","email":"snn@gmail.com","gender":"female","ip_address":1234,"age":23},
+{"first_name":"sunil","last_name":"naik","email":"suniln@gmail.com","gender":"male","ip_address":1,"age":25},
+{"first_name":"suniln","last_name":"naik","email":"sun@gmail.com","gender":"male","ip_address":2,"age":24},
+ {"first_name":"jaya","last_name":"bhat","email":"jaya@gmail.com","gender":"female","ip_address":3,"age":44},
+ {"first_name":"ajay","last_name":"shet","email":"ajay@gmail.com","gender":"male","ip_address":3,"age":26},
+ {"first_name":"yogi","last_name":"naik","email":"yog@gmail.com","gender":"female","ip_address":4,"age":21},
+ {"first_name":"aisha","last_name":"maurya","email":"ashu@gmail.com","gender":"female","ip_address":5,"age":21},
+ {"first_name":"krish","last_name":"acharya","email":"krish@gmail.com","gender":"male","ip_address":6,"age":23},
+ {"first_name":"mine","last_name":"naik","email":"you@gmail.com","gender":"female","ip_address":7,"age":22}])
+
+
+ //find all by using find:
+ db.users.find({}).pretty()
+
+ //find single document using findOne:
+ db.users.findOne({"first_name":"sneha"})
+ db.users.findOne({"first_name":"snehaal"})
+ db.users.findOne({"first_name":"sunil"})
+ db.users.findOne({"first_name":"suniln"})
+ db.users.findOne({"first_name":"jaya"})
+ db.users.findOne({"first_name":"ajay"})
+ db.users.findOne({"first_name":"yogi"})
+ db.users.findOne({"first_name":"aisha"})
+ db.users.findOne({"first_name":"krish"})
+ db.users.findOne({"first_name":"mine"})
+
+
+//update 3documents:
+ db.users.update({"first_name":"snehaal"},{$set: {"city":"pune"}})
+  db.users.find({"first_name":"snehaal"})
+  db.users.update({"first_name":"sneha"},{$set:{"city":"banglore"}}) 
+  db.users.find({})
+   db.users.update({"first_name":"jaya"},{$set:{"city":"up"}})   
+    db.users.find({})
+
+//using updateMany:
+    db.users.updateMany({"age":22},{$set:{"city":"kerla"}})
+     db.users.find({}).pretty()
+
+
+  //removing the one document:
+   db.users.remove({first_name:"mine"}) 
+   db.users.find({}).pretty() 
+
+   db.users.remove({"first_name": "krish"}, 1)  
+   db.users.find({}).pretty()
+
+// removing many document:
+    db.users.deleteMany({"age":21})
+
+
+ //delete database:
+    db.dropDatabase()
